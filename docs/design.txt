@@ -1,0 +1,193 @@
+Final program for Progfun
+
+Problem Statement: Make a game called Top Secret where the player must make it to the White House with the some secret files that aliens are trying to take. The player gets a gun but the gun is just a pistol with a low firing rate.
+The player can fire with the space bar and move with the keyboard arrows. A score is keep to encourage shooting the enemies instead of just running thought the level. The game will end when the player makes it to the end or touches and alien. You will be prompt if you die to see if you would like to play again or not. If you make it to the White House then you will be asked if to want to play again for not.
+
+Nouns: player, gun, score, alien
+
+Verbs: prompt, display, fire, move
+
+Inputs: 
+  Spacebar
+  arrow keys
+  final message
+
+Process: 
+  start the game
+  responded to input from keyboard
+  prompt player if they collide with an alien
+  prompt player if they reach the White House
+  display final message
+  or reload game
+Outputs:
+  Finalmessage
+  Reload game
+
+
+Pseudocode 
+
+Preload
+  Load background image
+  Load ground image
+  Load platform image
+  load White House image
+  Load player image
+  Load alien image
+  Load bullet image
+END
+Create
+  Enable arcade physics to arcade
+  Add player image to the game
+  Set player starting position
+  Set player physics
+  Set camera to follow player
+  Create a group for the platforms and ground
+  Add background to the game
+  Add the ground to the game
+  Set the ground position
+  Enable arcade physics on ground
+  Set to immoveable 
+  Add the platforms to the game
+  Set platforms in position
+  Enable arcade physics on platform
+  Set some of the platforms to immoveable
+  Add White House to the game
+  Set White House at the end of the map
+  Enable arcade physics on White House 
+  Add bullets to game
+  Enable arcade physics on bullets
+  Set how many bullets the player can have
+  End bullet when it goes out of bounds
+  Add fire button set to spacebar
+  Add alien image to game
+  Enable arcade physics on alien
+END
+
+Update
+  IF left arrow is down THEN
+    Move player to the left on x axis
+  IF right arrow is down THEN
+    move player to the right
+  IF up arrow is down THEN
+    make player jump
+  IF spacebar is down THEN
+    call fireBullet function
+  check for collision between player and platforms 
+  Check for collision between aliens and platforms
+  check for overlap between player and aliens and call resetGame function
+  check for overlap between alien and bullets and call killAlien 
+  check for overlap between player and White House and call winGame function
+END
+
+fireBullet
+  set bullet starting postion
+  set bullet speed on x axis
+END
+
+killAlien
+  kill alien 
+  kill bullet
+  add 100 to score
+END
+
+resetGame
+  set restart
+  prompt for restart with "You failed you country and the world. Would you like a chance to clear your name?(yes/no)"
+  IF yes THEN
+    reload page
+  ELSE
+    Display a picture that says Thanks for playing
+  ENDIF
+END
+
+winGame
+  set restart
+  prompt for restart with "Congratulations you have protected our species from falling under to aliens control. Would you like to help one more time?(yes/no)"
+  IF yes THEN
+    reload page
+  ELSE
+    display a picture that says Thanks for playing
+  ENDIF
+END
+
+Test Plans
+
+Variables: 
+  keyboard input, 
+
+TEST CASE 1:
+
+  INPUT VALUES:
+    Run into an alien
+  
+  EXPECTED RESULTS:
+    You failed you country and the world. Would you like a chance to clear your name?(yes/no)
+  
+  ACTUAL RESULT:
+    You failed you country and the world. Would you like a chance to clear your name?(yes/no)
+
+TEST CASE 2:
+
+  INPUT VALUES:
+    Make it to the White House
+  
+  EXPECTED RESULTS:
+    Congratulations you have protected our species from falling under the aliens control. Would you like to help one more time?(yes/no) is displayed
+    
+  ACTUAL RESULT:
+    Congratulations you have protected our species from falling under the aliens control. Would you like to help one more time?(yes/no) is displayed
+
+TEST CASE 3:
+
+  INPUT VALUES:
+    Set collision between the ground and player
+  
+  EXPECTED VALUES:
+    Player should collide with ground and platforms
+
+  ACTUAL VALUES:
+    Player can now walk and jump on the ground after I set up the collision and set the player to a higher starting point.
+
+TEST CASE 4:
+
+  INPUT VALUES:
+    Shoot an alien
+  
+  EXPECTED RESULTS:
+    The alien should disappear 
+  
+  ACTUAL RESULT:
+    The aliens disappear when you shoot them and add 100 to score
+
+TEST CASE 5:
+
+  INPUT VALUES:
+    Jump on the fall platform
+    
+  EXPECTED RESULTS:
+    The platform should fall
+  
+  ACTUAL RESULT:
+    The platform falls if you jump on top of it but also moves side ways if you run into it.
+  
+TEST CASE 6:
+  
+  INPUT VALUES:
+    Set the aliens to move back and forth with a loop
+  
+  EXPECTED RESULTS:
+    See the aliens move back and forth until they get shoot
+  
+  ACTUAL RESULTS: 
+    The aliens move back and forth (finally) and disappear when shoot.
+
+TEST CASE 7:
+  
+  INPUT VALUES:
+    Move player to the worlds bounds
+  
+  EXPECTED VALUES:
+    The charecter should be stoped from walking off map.
+  
+  ACTUAL VALUES:
+    The player was stopped from moving off the map.
